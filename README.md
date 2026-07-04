@@ -212,3 +212,112 @@ After deployment, multiple verification steps were performed to confirm that the
 ### Project Structure
 
 ![Project](screenshots/09-directory-tree.png)
+
+---
+
+# Troubleshooting
+
+During the deployment, several issues were encountered. Each problem was investigated systematically until the root cause was identified and resolved.
+
+## Issue 1 — Docker Permission Denied
+
+**Problem**
+
+Docker commands failed because the current user did not have permission to communicate with the Docker daemon.
+
+**Root Cause**
+
+The user account was not a member of the Docker group.
+
+**Resolution**
+
+The user was added to the Docker group and the session was refreshed before continuing with the deployment.
+
+---
+
+## Issue 2 — Manager and Indexer Container Confusion
+
+**Problem**
+
+Administrative tools were executed inside the Wazuh Manager container instead of the Wazuh Indexer container.
+
+**Root Cause**
+
+The Wazuh password management utilities are available only inside the Indexer container.
+
+**Resolution**
+
+The correct container was identified and administrative commands were executed from the Wazuh Indexer container.
+
+---
+
+## Issue 3 — Password Tool Required Root Privileges
+
+**Problem**
+
+The password management tool returned the following message:
+
+```
+This script must be run as root.
+```
+
+**Root Cause**
+
+The tool was executed using a non-root user inside the container.
+
+**Resolution**
+
+The Indexer container was accessed as the root user before running administrative utilities.
+
+---
+
+## Issue 4 — Dashboard Authentication Failure
+
+**Problem**
+
+Authentication failed when attempting to log into the Wazuh Dashboard.
+
+**Root Cause**
+
+The deployment was using the default credentials provided by the official Docker deployment.
+
+**Resolution**
+
+The correct credentials were used:
+
+```
+Username : admin
+Password : SecretPassword
+```
+
+---
+
+## Issue 5 — Dashboard Accessibility
+
+**Problem**
+
+Initially, the dashboard was accessed only from within the Ubuntu virtual machine.
+
+**Root Cause**
+
+The deployment needed to be verified from the Windows host system.
+
+**Resolution**
+
+The dashboard was successfully accessed remotely using the Ubuntu virtual machine's IP address over HTTPS.
+
+---
+
+## Key Takeaways
+
+This deployment provided practical experience with:
+
+- Docker container management
+- Wazuh service architecture
+- Docker Compose deployment
+- Linux command-line troubleshooting
+- Authentication troubleshooting
+- Container-based administration
+- System verification and validation
+
+The troubleshooting process reinforced the importance of identifying the root cause of problems before applying changes, resulting in a stable and repeatable deployment.
