@@ -321,3 +321,73 @@ This deployment provided practical experience with:
 - System verification and validation
 
 The troubleshooting process reinforced the importance of identifying the root cause of problems before applying changes, resulting in a stable and repeatable deployment.
+
+---
+
+# Lessons Learned
+
+Building this lab provided practical experience beyond simply deploying a SIEM platform. Throughout the project, several concepts became much clearer through hands-on troubleshooting and validation.
+
+### Technical Skills Gained
+
+- Docker container deployment and management
+- Docker Compose orchestration
+- Wazuh SIEM architecture
+- Ubuntu system administration
+- Linux command-line troubleshooting
+- HTTPS access using self-signed certificates
+- Container-based service verification
+- Basic infrastructure documentation
+
+### Operational Understanding
+
+This project reinforced the importance of:
+
+- Verifying deployments rather than assuming success.
+- Investigating root causes before making configuration changes.
+- Understanding the responsibilities of each Wazuh component.
+- Documenting troubleshooting steps for future reference.
+- Maintaining structured deployment documentation.
+
+---
+
+# Future Enhancements
+
+This deployment serves as the foundation for a larger SOC home lab.
+
+The following projects are planned:
+
+- Deploy Wazuh Agents on Linux and Windows
+- Centralized log collection
+- SSH brute-force detection
+- File Integrity Monitoring (FIM)
+- Vulnerability Detection
+- Active Response
+- MITRE ATT&CK mapping
+- Custom detection rules
+- Security incident investigations
+- SOC case studies
+
+---
+
+# References
+
+- Official Wazuh Documentation  
+  https://documentation.wazuh.com/
+
+- Wazuh Docker Repository  
+  https://github.com/wazuh/wazuh-docker
+
+- Docker Documentation  
+  https://docs.docker.com/
+
+---
+
+# Author
+
+**Rohan Paygude**
+
+Cybersecurity Enthusiast | SOC Analyst Aspirant | Home Lab Builder
+
+GitHub:
+https://github.com/rohanpayGude
