@@ -65,3 +65,150 @@ The Wazuh environment is hosted inside an Ubuntu virtual machine running on Orac
 | Access Method | HTTPS via Ubuntu VM IP Address |
 
 ---
+
+## Deployment Procedure
+
+The deployment was performed using the official Wazuh Docker single-node environment. Docker Compose was used to orchestrate all required containers while Ubuntu served as the host operating system inside Oracle VirtualBox.
+
+### 1. Clone the Official Repository
+
+```bash
+git clone https://github.com/wazuh/wazuh-docker.git
+```
+
+This downloads the official Wazuh Docker deployment files.
+
+---
+
+### 2. Navigate to the Single-Node Deployment
+
+```bash
+cd wazuh-docker/single-node
+```
+
+The single-node deployment is suitable for home labs, learning environments, and proof-of-concept deployments.
+
+---
+
+### 3. Generate SSL Certificates
+
+Before starting the containers, SSL certificates were generated for secure communication between Wazuh components.
+
+```bash
+docker compose -f generate-indexer-certs.yml run --rm generator
+```
+
+---
+
+### 4. Deploy the Containers
+
+```bash
+docker compose up -d
+```
+
+Docker Compose creates and starts:
+
+- Wazuh Dashboard
+- Wazuh Manager
+- Wazuh Indexer
+
+---
+
+### 5. Verify the Deployment
+
+The following commands were used to verify that all services were running correctly.
+
+```bash
+docker compose ps
+```
+
+```bash
+docker ps
+```
+
+---
+
+### 6. Access the Dashboard
+
+Once all services were operational, the Wazuh Dashboard was accessed through the Ubuntu virtual machine using HTTPS.
+
+```
+https://<Ubuntu_VM_IP>
+```
+
+The default credentials for the deployment were:
+
+```
+Username : admin
+Password : SecretPassword
+```
+
+> **Note:** The browser displays a security warning because Wazuh uses a self-signed SSL certificate in the lab environment.
+
+---
+
+## Deployment Verification
+
+After deployment, multiple verification steps were performed to confirm that the environment was functioning correctly.
+
+### Verification Checklist
+
+- Docker containers started successfully.
+- Wazuh Dashboard was accessible through HTTPS.
+- All Wazuh services were operational.
+- Docker Compose reported healthy containers.
+- Remote access from the Windows host was successful.
+
+### Deployment Evidence
+
+### Login Page
+
+![Login](screenshots/01-login-page.png)
+
+---
+
+### Dashboard
+
+![Dashboard](screenshots/02-dashboard-home.png)
+
+---
+
+### Docker Compose Status
+
+![Docker Compose](screenshots/03-docker-compose-ps.png)
+
+---
+
+### Running Containers
+
+![Docker PS](screenshots/04-docker-ps.png)
+
+---
+
+### Remote Dashboard Access
+
+![Remote Access](screenshots/05-remote-dashboard-access.png)
+
+---
+
+### Ubuntu Version
+
+![Ubuntu](screenshots/06-ubuntu-version.png)
+
+---
+
+### Docker Version
+
+![Docker](screenshots/07-docker-version.png)
+
+---
+
+### System Information
+
+![System](screenshots/08-system-information.png)
+
+---
+
+### Project Structure
+
+![Project](screenshots/09-directory-tree.png)
